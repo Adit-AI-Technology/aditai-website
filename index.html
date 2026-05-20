@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adit AI Technology — Enterprise AI Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        'surface': {
+                            'base': '#0a0a0b',
+                            'raised': '#111113',
+                            'elevated': '#161618',
+                            'overlay': '#1c1c1f',
+                            'border': '#2a2a2e',
+                        },
+                        'accent': {
+                            'subtle': '#3b82f6',
+                            'base': '#60a5fa',
+                            'glow': '#93bbfd',
+                        }
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shimmer': 'shimmer 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(24px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                    },
+                    backgroundImage: {
+                        'grid-pattern': 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="icon" type="image/png" href="assets/LOGO_IMAGE_V3.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0a0a0b] text-white font-sans antialiased">
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-b border-transparent">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-20 lg:h-24">
+                <!-- Logo -->
+                <a href="#" class="flex items-center -ml-1 p-1.5 rounded-xl bg-white/[0.03] border border-white/10 group">
+                    <img src="assets/LOGO_IMAGE_V3.png" alt="Adit AI Technology" class="h-14 lg:h-16 w-auto object-contain">
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden lg:flex items-center gap-7">
+                    <a href="#platform" class="desktop-nav-link text-sm font-medium transition-colors duration-200">AI Services</a>
+                    <a href="#capabilities" class="desktop-nav-link text-sm font-medium transition-colors duration-200">Capabilities</a>
+                    <a href="#solutions" class="desktop-nav-link text-sm font-medium transition-colors duration-200">Solutions</a>
+                    <a href="#enterprise" class="desktop-nav-link text-sm font-medium transition-colors duration-200">Enterprise Security</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden border-t border-surface-border">
+                <div class="py-4 space-y-1">
+                    <a href="#platform" class="block px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-raised rounded-lg transition-all">AI Services</a>
+                    <a href="#capabilities" class="block px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-raised rounded-lg transition-all">Capabilities</a>
+                    <a href="#solutions" class="block px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-raised rounded-lg transition-all">Solutions</a>
+                    <a href="#enterprise" class="block px-4 py-3 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-raised rounded-lg transition-all">Enterprise Security</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+        <!-- Background Orbs -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="animate-pulse-glow absolute top-1/3 left-1/2 w-[560px] h-[560px] rounded-full bg-blue-600/10 blur-[140px] -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+
+        <!-- Grid Pattern -->
+        <div class="absolute inset-0 z-0 opacity-20 bg-grid-pattern bg-[length:60px_60px]"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-[900px] mx-auto px-6 text-center">
+            <h1 class="animate-fade-up opacity-0 hero-title text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold tracking-tight leading-[0.95] mb-6" style="animation-delay: 0.1s;">
+                <span class="gradient-text">Enterprise AI</span><br>
+                <span class="text-white">built for operational</span><br>
+                <span class="text-white">transformation</span>
+            </h1>
+            
+            <p class="animate-fade-up opacity-0 text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed" style="animation-delay: 0.35s;">
+                Adit AI Technology helps enterprises design, integrate, and operationalize secure AI systems that automate workflows, improve decision-making, and modernize business operations.
+            </p>
+            
+            <div class="animate-fade-up opacity-0 flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay: 0.5s;">
+                <a href="https://calendly.com/arvind-aditai-tech/20min" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-black font-semibold text-base hover:bg-zinc-200 transition-all duration-200 shadow-lg shadow-white/10 flex items-center justify-center gap-2">
+                    Book a discovery call
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#platform" class="w-full sm:w-auto px-8 py-3.5 rounded-full border border-zinc-700 text-white font-semibold text-base hover:bg-white/5 hover:border-zinc-500 transition-all duration-200 flex items-center justify-center gap-2">
+                    View services
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============ AI SERVICES SECTION ============ -->
+    <section id="platform" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[1400px] mx-auto">
+        <div class="text-center mb-16">
+            <p class="text-sm font-semibold text-accent-base uppercase tracking-widest mb-4">What Adit AI Technology Provides</p>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Enterprise AI Services<br class="hidden sm:block">
+                <span class="gradient-text">for operational scale</span>
+            </h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                Strategic advisory, engineering, and automation delivery for organizations 
+                turning AI from pilots into governed production systems.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-surface-border rounded-2xl overflow-hidden">
+            <div class="bg-[#0a0a0b] p-8 lg:p-10 hover-lift group cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+                    <i data-lucide="compass" class="w-6 h-6 text-accent-base"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">AI Strategy & Consulting</h3>
+                <p class="text-zinc-400 leading-relaxed text-sm">Assess workflows, define AI roadmaps, and align executive priorities with measurable operational outcomes.</p>
+            </div>
+            <div class="bg-[#0a0a0b] p-8 lg:p-10 hover-lift group cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+                    <i data-lucide="layers-3" class="w-6 h-6 text-indigo-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Custom AI Engineering</h3>
+                <p class="text-zinc-400 leading-relaxed text-sm">Design and build secure AI applications, copilots, and data-connected systems tailored to enterprise operations.</p>
+            </div>
+            <div class="bg-[#0a0a0b] p-8 lg:p-10 hover-lift group cursor-default">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:bg-cyan-500/20 transition-colors">
+                    <i data-lucide="workflow" class="w-6 h-6 text-cyan-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Enterprise AI Automation</h3>
+                <p class="text-zinc-400 leading-relaxed text-sm">Integrate intelligent automation into business processes with governance, observability, and change-ready delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CAPABILITIES SECTION ============ -->
+    <section id="capabilities" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[1400px] mx-auto border-t border-surface-border">
+        <div class="text-center mb-16">
+            <p class="text-sm font-semibold text-accent-base uppercase tracking-widest mb-4">Capabilities</p>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Enterprise AI capabilities<br class="hidden sm:block">
+                <span class="gradient-text">built for operational scale</span>
+            </h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                Strategic AI engineering, intelligent automation, governance, and enterprise integration designed for real-world operational transformation.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="shield-check" class="w-8 h-8 text-accent-base mb-4"></i>
+                <h3 class="font-semibold mb-2">AI Readiness & Opportunity Mapping</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Identify high-impact AI use cases, assess operational readiness, and define transformation roadmaps aligned to business priorities.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="bar-chart-3" class="w-8 h-8 text-emerald-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Workflow Automation Design</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Design intelligent workflows that combine AI, orchestration, approvals, and operational systems into scalable automation pipelines.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="lock" class="w-8 h-8 text-amber-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Custom AI Assistants & Copilots</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Build secure enterprise copilots, AI assistants, and domain-specific conversational systems integrated with business data.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="zap" class="w-8 h-8 text-purple-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Data & Systems Integration</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Connect AI systems with ERP, CRM, SaaS platforms, APIs, databases, and enterprise workflows using governed integration patterns.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="file-text" class="w-8 h-8 text-rose-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Governance & Risk Controls</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Implement AI governance frameworks, auditability, human oversight, access controls, and enterprise risk management practices.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="git-branch" class="w-8 h-8 text-orange-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Deployment Enablement</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Deploy production-grade AI solutions across cloud, hybrid, VPC, and enterprise infrastructure environments with observability built in.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="share-2" class="w-8 h-8 text-sky-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Process Intelligence</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Enable operational visibility using AI-powered analytics, anomaly detection, workflow insights, and decision-support systems.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-zinc-600 hover:bg-surface-elevated transition-all duration-300 group">
+                <i data-lucide="activity" class="w-8 h-8 text-teal-400 mb-4"></i>
+                <h3 class="font-semibold mb-2">Enterprise Change Adoption</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">Support enterprise AI adoption with rollout strategies, operational alignment, governance processes, and stakeholder enablement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SOLUTIONS SECTION ============ -->
+    <section id="solutions" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[1400px] mx-auto border-t border-surface-border">
+        <div class="text-center mb-16">
+            <p class="text-sm font-semibold text-accent-base uppercase tracking-widest mb-4">Solutions</p>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Solutions for<br class="hidden sm:block">
+                <span class="gradient-text">enterprise transformation</span>
+            </h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                Production-grade AI solutions designed to modernize operations, automate workflows, strengthen decision-making, and accelerate enterprise transformation.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-surface-raised border border-surface-border rounded-2xl p-8 lg:p-10 hover:border-zinc-600 transition-all duration-300 group">
+                <span class="text-sm font-mono text-accent-base mb-4 block">01</span>
+                <h3 class="text-2xl font-bold mb-3">AI-Powered Financial Operations</h3>
+                <p class="text-zinc-400 leading-relaxed">Intelligent fraud detection, AML workflows, risk monitoring, operational analytics, and compliance-aware automation for modern financial institutions.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-2xl p-8 lg:p-10 hover:border-zinc-600 transition-all duration-300 group">
+                <span class="text-sm font-mono text-accent-base mb-4 block">02</span>
+                <h3 class="text-2xl font-bold mb-3">Enterprise Workflow Automation</h3>
+                <p class="text-zinc-400 leading-relaxed">AI-enabled process automation for approvals, operations, reporting, internal workflows, and repetitive enterprise decision paths.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-2xl p-8 lg:p-10 hover:border-zinc-600 transition-all duration-300 group">
+                <span class="text-sm font-mono text-accent-base mb-4 block">03</span>
+                <h3 class="text-2xl font-bold mb-3">AI Integration & Transformation Delivery</h3>
+                <p class="text-zinc-400 leading-relaxed">End-to-end AI implementation across enterprise systems, cloud environments, governance frameworks, operational workflows, and organizational adoption programs.</p>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-2xl p-8 lg:p-10 hover:border-zinc-600 transition-all duration-300 group">
+                <span class="text-sm font-mono text-accent-base mb-4 block">04</span>
+                <h3 class="text-2xl font-bold mb-3">AI-Augmented Cybersecurity</h3>
+                <p class="text-zinc-400 leading-relaxed">AI-assisted anomaly detection, security analysis, intelligent investigation workflows, governance monitoring, and operational cyber defense support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ENTERPRISE SECTION ============ -->
+    <section id="enterprise" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[1400px] mx-auto border-t border-surface-border">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-sm font-semibold text-accent-base uppercase tracking-widest mb-4">Enterprise Security</p>
+                <h2 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+                    Secure AI delivery<br class="hidden sm:block">
+                    <span class="gradient-text">for enterprise environments</span>
+                </h2>
+                <p class="text-lg text-zinc-400 leading-relaxed mb-8">
+                    Adit AI designs and implements AI systems with security, governance, and infrastructure requirements built into the delivery process from day one.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 rounded-full bg-surface-elevated border border-surface-border text-sm font-medium text-zinc-300">SOC 2 Architecture</span>
+                    <span class="px-4 py-2 rounded-full bg-surface-elevated border border-surface-border text-sm font-medium text-zinc-300">HIPAA Controls</span>
+                    <span class="px-4 py-2 rounded-full bg-surface-elevated border border-surface-border text-sm font-medium text-zinc-300">FedRAMP-Ready Infrastructure</span>
+                    <span class="px-4 py-2 rounded-full bg-surface-elevated border border-surface-border text-sm font-medium text-zinc-300">GDPR Compliance Support</span>
+                    <span class="px-4 py-2 rounded-full bg-surface-elevated border border-surface-border text-sm font-medium text-zinc-300">ISO 27001 Security Practices</span>
+                </div>
+            </div>
+            <div class="bg-surface-raised border border-surface-border rounded-2xl p-8 lg:p-10">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
+                        <i data-lucide="server" class="w-6 h-6 text-green-400"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold">Secure by design</p>
+                        <p class="text-sm text-zinc-400">Governed AI deployment</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between py-3 border-b border-surface-border">
+                        <span class="text-sm text-zinc-400">Deployment models</span>
+                        <span class="text-sm font-medium">Cloud / VPC / Hybrid</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-b border-surface-border">
+                        <span class="text-sm text-zinc-400">Data protection</span>
+                        <span class="text-sm font-medium">Encryption, access controls</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3 border-b border-surface-border">
+                        <span class="text-sm text-zinc-400">Identity integration</span>
+                        <span class="text-sm font-medium">SSO, RBAC, directory systems</span>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                        <span class="text-sm text-zinc-400">Governance layer</span>
+                        <span class="text-sm font-medium">Audit trails, approvals, oversight</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STATS BAR ============ -->
+    <section class="py-16 lg:py-20 border-y border-surface-border">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <p class="text-4xl sm:text-5xl font-bold gradient-text mb-2">2-4 weeks</p>
+                    <p class="text-sm text-zinc-400">AI readiness roadmap</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl sm:text-5xl font-bold gradient-text mb-2">4-8 weeks</p>
+                    <p class="text-sm text-zinc-400">Pilot implementation & validation</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl sm:text-5xl font-bold gradient-text mb-2">5+ domains</p>
+                    <p class="text-sm text-zinc-400">Finance, ops, SaaS, security, automation</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl sm:text-5xl font-bold gradient-text mb-2">100%</p>
+                    <p class="text-sm text-zinc-400">Governance-first delivery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA SECTION ============ -->
+    <section id="contact" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[800px] mx-auto text-center">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            Ready to<br class="hidden sm:block">
+            <span class="text-white">get started?</span>
+        </h2>
+        <p class="text-lg text-zinc-400 mb-10 leading-relaxed max-w-xl mx-auto">
+            Schedule a demo with our team and see how Adit AI can accelerate your machine learning initiatives.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/arvind-aditai-tech/20min" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-black font-semibold text-base hover:bg-zinc-200 transition-all duration-200 shadow-lg shadow-white/10 flex items-center justify-center gap-2">
+                Book a discovery call
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="border-t border-surface-border py-16 px-6 lg:px-12">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2">
+                    <a href="#" class="flex items-center mb-4">
+                        <img src="assets/LOGO_IMAGE_V3.png" alt="Adit AI Technology" class="h-14 w-auto object-contain">
+                    </a>
+                    <p class="text-sm text-zinc-500 max-w-xs leading-relaxed">
+                        Enterprise AI consulting, engineering, and automation for secure operational transformation.
+                    </p>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-zinc-300 mb-4">Services</p>
+                    <div class="space-y-3">
+                        <a href="#platform" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">AI Services</a>
+                        <a href="#capabilities" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">Capabilities</a>
+                        <a href="#solutions" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">Solutions</a>
+                        <a href="#enterprise" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">Enterprise Security</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-zinc-300 mb-4">Company</p>
+                    <div class="space-y-3">
+                        <a href="https://calendly.com/arvind-aditai-tech/20min" target="_blank" rel="noopener noreferrer" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">Book a discovery call</a>
+                        <a href="mailto:contactus@aditai.tech" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">contactus@aditai.tech</a>
+                        <a href="https://www.linkedin.com/company/adit-ai-technology/" target="_blank" rel="noopener noreferrer" class="block text-sm text-zinc-500 hover:text-zinc-300 transition-colors">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-surface-border gap-4">
+                <p class="text-sm text-zinc-600">© 2025 Adit AI Technology. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="https://www.linkedin.com/company/adit-ai-technology/" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-zinc-400 transition-colors" aria-label="Adit AI Technology on LinkedIn"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
