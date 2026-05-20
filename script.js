@@ -128,6 +128,101 @@ window.addEventListener('load', () => {
     setupScrollAnimations();
 });
 
+// === HERO CANVAS - ANIMATED INFRASTRUCTURE MESH ===
+const heroCanvas = document.getElementById('hero-canvas');
+
+if (heroCanvas) {
+    const ctx = heroCanvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let nodes = [];
+    let animationId = null;
+    const nodeCount = 60;
+    const maxDistance = 180;
+
+    function resizeHeroCanvas() {
+        const rect = heroCanvas.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        width = rect.width;
+        height = rect.height;
+        heroCanvas.width = Math.floor(width * dpr);
+        heroCanvas.height = Math.floor(height * dpr);
+        heroCanvas.style.width = `${width}px`;
+        heroCanvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createHeroNodes() {
+        nodes = Array.from({ length: nodeCount }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            radius: Math.random() * 1.5 + 0.5,
+            opacity: Math.random() * 0.4 + 0.1,
+        }));
+    }
+
+    function drawHeroMesh() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < nodes.length; i += 1) {
+            for (let j = i + 1; j < nodes.length; j += 1) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < maxDistance) {
+                    const alpha = (1 - distance / maxDistance) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        nodes.forEach((node) => {
+            const glow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 4);
+            glow.addColorStop(0, `rgba(96, 165, 250, ${node.opacity * 0.5})`);
+            glow.addColorStop(1, 'rgba(96, 165, 250, 0)');
+
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
+            ctx.fillStyle = glow;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(230, 244, 255, ${Math.min(node.opacity + 0.15, 0.7)})`;
+            ctx.fill();
+
+            node.x += node.vx;
+            node.y += node.vy;
+
+            if (node.x < -20) node.x = width + 20;
+            if (node.x > width + 20) node.x = -20;
+            if (node.y < -20) node.y = height + 20;
+            if (node.y > height + 20) node.y = -20;
+        });
+
+        animationId = requestAnimationFrame(drawHeroMesh);
+    }
+
+    function initHeroCanvas() {
+        resizeHeroCanvas();
+        createHeroNodes();
+        if (animationId) cancelAnimationFrame(animationId);
+        drawHeroMesh();
+    }
+
+    initHeroCanvas();
+    window.addEventListener('resize', initHeroCanvas);
+}
+
 // === SMOOTH SCROLL FOR ANCHOR LINKS ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
